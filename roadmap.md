@@ -1,3 +1,5 @@
+## Structure
+
 agentic-opt-assistant/
 ├── agents/
 │   ├── planner_agent.py
@@ -11,3 +13,5 @@ agentic-opt-assistant/
 ├── requirements.txt
 └── utils/
     └── prompt_templates.py
+
+

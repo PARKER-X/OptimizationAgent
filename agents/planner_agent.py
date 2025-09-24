@@ -1,23 +1,20 @@
-from agents.planner_agent import PLANNER_PROMPT_TEMPLATE
-# agents/planner_agent.py
-
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
-from utils.prompt_templates import PLANNER_PROMPT_TEMPLATE
+from utils.prompt_planner import PLANNER_PROMPT_TEMPLATE
 
 # Load .env variables
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 
-def plan_task(task_description: str, model_name: str = "models/gemini-pro") -> str:
+def plan_task(task_description: str, model_name: str = "models/gemini-2.5-flash") -> str:
     """
     Uses Gemini to generate a detailed OR solution plan based on task description.
 
     Args:
         task_description (str): Description of the OR problem.
-        model_name (str): Gemini model name (default = "models/gemini-pro").
+        model_name (str): Gemini model name (default = "models/gemini-2.5-flash").
 
     Returns:
         str: A detailed, structured solution plan.

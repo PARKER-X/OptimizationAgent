@@ -20,5 +20,8 @@ agentic-opt-assistant/
     │   ├── planner.py
     │   ├── solver.py
     └── main.py  # FastAPI app
-
+├── templates/              ← HTML files go here
+│   └── index.html
+└── static/                 ← CSS/JS/images here
+    └── style.css
 

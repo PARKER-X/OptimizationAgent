@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILP Optimization Agent</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>MILP Agent</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="hero-title">
+                <span class="gradient-text">MILP Optimization</span>
+                <br>Intelligence Agent
+            </h1>
+            <p class="hero-subtitle">
+                Advanced Mixed-Integer Linear Programming solutions powered by AI
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToQuery()">
+                    <i class="fas fa-play"></i>
+                    Start Optimization
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToFeatures()">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Choose Our MILP Agent?</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered</h3>
+                    <p>Advanced machine learning algorithms optimize your linear programming problems with unprecedented accuracy.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Process complex optimization problems in seconds with our high-performance computing infrastructure.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with 99.9% uptime guarantee for your critical optimization tasks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Query Section -->
+    <section id="query" class="query-section">
+        <div class="container">
+            <div class="query-container" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="query-title">Run Your Optimization Query</h2>
+                <p class="query-subtitle">Describe your optimization problem and let our AI agent find the optimal solution</p>
+                
+                <form class="query-form" id="optimizationForm">
+                    <div class="form-group">
+                        <label for="problemType">Problem Type</label>
+                        <select id="problemType" name="problemType" required>
+                            <option value="">Select problem type...</option>
+                            <option value="production">Production Planning</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="scheduling">Scheduling</option>
+                            <option value="portfolio">Portfolio Optimization</option>
+                            <option value="resource">Resource Allocation</option>
+                            <option value="custom">Custom Problem</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="problemDescription">Problem Description</label>
+                        <textarea 
+                            id="problemDescription" 
+                            name="problemDescription" 
+                            placeholder="Describe your optimization problem in detail. Include constraints, objectives, and any specific requirements..."
+                            rows="6"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="constraints">Constraints (Optional)</label>
+                        <textarea 
+                            id="constraints" 
+                            name="constraints" 
+                            placeholder="List any specific constraints or limitations..."
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="objective">Objective Function</label>
+                        <input 
+                            type="text" 
+                            id="objective" 
+                            name="objective" 
+                            placeholder="e.g., Minimize cost, Maximize profit, Minimize time..."
+                            required
+                        >
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i>
+                        Optimize Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>Advanced MILP Technology</h2>
+                    <p>Our MILP Optimization Agent leverages cutting-edge algorithms and machine learning to solve complex mixed-integer linear programming problems. Whether you're optimizing supply chains, scheduling resources, or managing portfolios, our AI-powered solution delivers optimal results.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>99.7%</h3>
+                            <p>Accuracy Rate</p>
+                        </div>
+                        <div class="stat">
+                            <h3>10x</h3>
+                            <p>Faster Processing</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="visual-container">
+                        <div class="floating-elements">
+                            <div class="element element-1"></div>
+                            <div class="element element-2"></div>
+                            <div class="element element-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MILP Agent</h3>
+                    <p>Advanced optimization solutions powered by artificial intelligence.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>support@milpagent.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MILP Optimization Agent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../static/script.js"></script>
+</body>
+</html>

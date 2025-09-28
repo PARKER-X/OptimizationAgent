@@ -14,5 +14,11 @@ agentic-opt-assistant/
 ├── requirements.txt
 └── utils/
     └── prompt_templates.py
+└── api/
+    ├── __init__.py
+    ├── routes/
+    │   ├── planner.py
+    │   ├── solver.py
+    └── main.py  # FastAPI app
 
 

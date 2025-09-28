@@ -7,7 +7,8 @@ agentic-opt-assistant/
 │   ├── explainer_agent.py
 │   └── retrieval_agent.py
 ├── data/                  # PDF/notes for RAG
-├── app.py                 # Streamlit app
+├── app.py                 # Gradio app
+├── main.py                #streamlit app
 ├── .env                   # API keys
 ├── README.md
 ├── requirements.txt

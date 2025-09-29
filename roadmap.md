@@ -24,6 +24,9 @@ agentic-opt-assistant/
 │   └── index.html
 └── static/                 ← CSS/JS/images here
     └── style.css
+    └── script.js
+    
+
 
 User Input → Form Submission → API Calls → Results Display
      ↓              ↓              ↓            ↓

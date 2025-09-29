@@ -11,6 +11,7 @@ agentic-opt-assistant/
 ├── main.py                #streamlit app
 ├── .env                   # API keys
 ├── README.md
+├── procfile
 ├── requirements.txt
 └── utils/
     └── prompt_templates.py

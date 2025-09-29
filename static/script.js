@@ -50,7 +50,7 @@ function scrollToFeatures() {
 }
 
 // Form submission handling
-document.getElementById('optimizationForm').addEventListener('submit', function(e) {
+document.getElementById('optimizationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const formData = new FormData(this);
@@ -61,22 +61,129 @@ document.getElementById('optimizationForm').addEventListener('submit', function(
     submitButton.innerHTML = '<div class="loading"></div> Processing...';
     submitButton.disabled = true;
     
-    // Simulate processing time
-    setTimeout(() => {
+    try {
+        const problemDescription = formData.get('problemDescription');
+        const constraints = formData.get('constraints');
+        
+        console.log('Submitting problem:', problemDescription);
+        
         // Store form data in localStorage for results page
         const optimizationData = {
-            problemType: formData.get('problemType'),
-            problemDescription: formData.get('problemDescription'),
-            constraints: formData.get('constraints'),
-            objective: formData.get('objective'),
+            problemDescription: problemDescription,
+            constraints: constraints,
             timestamp: new Date().toISOString()
         };
         
         localStorage.setItem('optimizationData', JSON.stringify(optimizationData));
         
+        // Call FastAPI endpoints
+        const apiConfig = window.API_CONFIG || {
+            baseURL: window.location.origin,
+            endpoints: {
+                solver: '/solver/solve',
+                planner: '/planner/plan',
+                explainer: '/explainer/solve'
+            }
+        };
+        
+        console.log('API Config:', apiConfig);
+        
+        // Test API connectivity first
+        try {
+            const healthResponse = await fetch(`${apiConfig.baseURL}/health`);
+            if (!healthResponse.ok) {
+                throw new Error(`Health check failed: ${healthResponse.status}`);
+            }
+            console.log('API health check passed');
+        } catch (healthError) {
+            console.error('API health check failed:', healthError);
+            throw new Error('API server is not responding. Please check if the FastAPI server is running.');
+        }
+        
+        // Call APIs with better error handling
+        const apiCalls = [
+            fetch(`${apiConfig.baseURL}${apiConfig.endpoints.solver}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ problem_description: problemDescription })
+            }).then(async res => {
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`Solver API error (${res.status}): ${errorText}`);
+                }
+                return res.json();
+            }),
+            
+            fetch(`${apiConfig.baseURL}${apiConfig.endpoints.planner}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ problem_description: problemDescription })
+            }).then(async res => {
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`Planner API error (${res.status}): ${errorText}`);
+                }
+                return res.json();
+            }),
+            
+            fetch(`${apiConfig.baseURL}${apiConfig.endpoints.explainer}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ problem_description: problemDescription })
+            }).then(async res => {
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(`Explainer API error (${res.status}): ${errorText}`);
+                }
+                return res.json();
+            })
+        ];
+        
+        console.log('Making API calls...');
+        const [solverResult, plannerResult, explainerResult] = await Promise.all(apiCalls);
+        
+        console.log('API Results:', { solverResult, plannerResult, explainerResult });
+        
+        // Store API results
+        const apiResults = {
+            solver: solverResult,
+            planner: plannerResult,
+            explainer: explainerResult
+        };
+        
+        localStorage.setItem('apiResults', JSON.stringify(apiResults));
+        
         // Redirect to results page
         window.location.href = 'results.html';
-    }, 2000);
+        
+    } catch (error) {
+        console.error('Error calling API:', error);
+        
+        // Show error message but still redirect to results page with fallback data
+        const errorMessage = error.message || 'Unknown error occurred';
+        console.log('API failed, using fallback data. Error:', errorMessage);
+        
+        // Store error information
+        localStorage.setItem('apiError', JSON.stringify({
+            message: errorMessage,
+            timestamp: new Date().toISOString()
+        }));
+        
+        // Show brief error message
+        submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> API Error - Using Demo Data';
+        submitButton.style.background = 'var(--warning-color)';
+        
+        // Still redirect to results page (will show mock data)
+        setTimeout(() => {
+            window.location.href = 'results.html';
+        }, 1000);
+    }
 });
 
 // Parallax effect for floating shapes

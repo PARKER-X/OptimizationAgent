@@ -25,3 +25,6 @@ agentic-opt-assistant/
 └── static/                 ← CSS/JS/images here
     └── style.css
 
+User Input → Form Submission → API Calls → Results Display
+     ↓              ↓              ↓            ↓
+Problem Desc → FastAPI Endpoints → Real Data → Interactive UI

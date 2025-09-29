@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MILP Optimization Agent</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="static/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
@@ -36,8 +36,7 @@
         </div>
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
             <h1 class="hero-title">
-                <span class="gradient-text">MILP Optimization</span>
-                <br>Intelligence Agent
+                MILP Optimization Intelligence Agent
             </h1>
             <p class="hero-subtitle">
                 Advanced Mixed-Integer Linear Programming solutions powered by AI
@@ -97,24 +96,11 @@
                 
                 <form class="query-form" id="optimizationForm">
                     <div class="form-group">
-                        <label for="problemType">Problem Type</label>
-                        <select id="problemType" name="problemType" required>
-                            <option value="">Select problem type...</option>
-                            <option value="production">Production Planning</option>
-                            <option value="transportation">Transportation</option>
-                            <option value="scheduling">Scheduling</option>
-                            <option value="portfolio">Portfolio Optimization</option>
-                            <option value="resource">Resource Allocation</option>
-                            <option value="custom">Custom Problem</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="problemDescription">Problem Description</label>
                         <textarea 
                             id="problemDescription" 
                             name="problemDescription" 
-                            placeholder="Describe your optimization problem in detail. Include constraints, objectives, and any specific requirements..."
+                            placeholder="Describe your optimization problem in detail. Include objectives, variables, and any specific requirements..."
                             rows="6"
                             required
                         ></textarea>
@@ -128,17 +114,6 @@
                             placeholder="List any specific constraints or limitations..."
                             rows="3"
                         ></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="objective">Objective Function</label>
-                        <input 
-                            type="text" 
-                            id="objective" 
-                            name="objective" 
-                            placeholder="e.g., Minimize cost, Maximize profit, Minimize time..."
-                            required
-                        >
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-large">
@@ -214,6 +189,18 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="../static/script.js"></script>
+    <script>
+        // API Configuration
+        window.API_CONFIG = {
+            baseURL: window.location.origin, // Use same origin as the frontend
+            endpoints: {
+                solver: '/solver/solve',
+                planner: '/planner/plan',
+                explainer: '/explainer/solve',
+                code: '/solver/code'
+            }
+        };
+    </script>
+    <script src="static/script.js"></script>
 </body>
 </html>
